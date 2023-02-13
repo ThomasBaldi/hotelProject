@@ -1,19 +1,21 @@
 {
-  "name": "hotelproject",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "dotenv": "^16.0.3",
-    "ejs": "^3.1.8",
-    "express": "^4.18.2",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "mysql2": "^3.1.2",
-    "sequelize": "^6.28.0"
-  }
+	"name": "hotelproject",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "supervisor node ./bin/www"
+	},
+	"dependencies": {
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"dotenv": "^16.0.3",
+		"ejs": "^3.1.8",
+		"express": "^4.18.2",
+		"http-errors": "~1.6.3",
+		"morgan": "~1.9.1",
+		"mysql": "^2.18.1",
+		"mysql2": "^3.1.2",
+		"sequelize": "^6.28.0",
+		"supervisor": "^0.12.0"
+	}
 }
