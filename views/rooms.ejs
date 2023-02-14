@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <div class="container">
+    <h2 class="p-3">Choose a room</h2>
+        <div class="list-group">
+            <% rooms.forEach(function(room) { %>
+                <div class="row px-3 py-1 w-100">
+                    <span class="col py-1 <%= room.UserId ? 'bg-warning' : 'bg-info' %>>">Room for <%=room.Capacity%> people
+                        <span class="right">Daily cost:
+                            <%=room.PricePerDay%>
+                        </span>
+                    </span>
+                    <button onclick="makeReservation(2,'<%=room.id%>',
+                    'http\:\/\/localhost:3000\/rooms\/reservation')" 
+                        class="col btn btn-secondary">
+                        Rent a room
+                    </button>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    <script src="../javascripts/managing.js"></script>
+</body>
+
+</html>

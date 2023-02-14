@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/hotels.css" rel="stylesheet">
-</head>
-
+<%- include('./partials/head.ejs') %>
 <body>
+    <%- include('./partials/navbar.ejs') %>
     <div class="container">
-    <h2 class="p-3">Choose a hotel</h2>
-    <div class="list-group">
-        <% hotels.forEach(function(hotel) { %>
-            <div class="row px-3 py-1 w-100">
-                <span class="col py-1 bg-info">
-                    <%=hotel.Name%>
-                    <span class="right">
-                        <%=hotel.Location%>
+        <h2 class="p-3">Choose a hotel</h2>
+        <div class="list-group">
+            <% hotels.forEach(function(hotel) { %>
+                <div class="row px-3 py-1 w-100">
+                    <span class="col py-1 bg-info">
+                        <%=hotel.Name%>
+                            <span class="right">
+                                <%=hotel.Location%>
+                            </span>
                     </span>
-                </span>
-                <a href="/rooms/<%=hotel.id%>" class="col btn btn-secondary"> Rent a room</a>
-                <a href="/hotels/<%=hotel.id%>" class="col btn btn-secondary"> Details</a>
-                <button onclick="deleteHotel(<%=hotel.id%>)" class="col btn btn-secondary"> Delete</button>
-            </div>
-        <% }); %>
-    </div>  
-   
-        <button id="addHotel" onclick="addHotel()"class="col btn btn-secondary"> Add Hotel </button>
-</div>
-    <script src="../javascripts/manageHotel.js"></script> 
+                    <a href="/rooms/<%=hotel.id%>" class="col btn btn-secondary"> Rent a room</a>
+                    <a href="/hotels/<%=hotel.id%>" class="col btn btn-secondary"> Details</a>
+                    <button onclick="deleteHotel(<%=hotel.id%>)" class="col btn btn-secondary"> Delete</button>
+                </div>
+            <% }); %>
+        </div>
+        <button id="addHotel" onclick="addHotel()" class="col btn btn-secondary"> Add Hotel </button>
+    </div>
+    <script src="../javascripts/managing.js"></script>
 </body>
 
 </html>

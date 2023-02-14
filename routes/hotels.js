@@ -12,6 +12,7 @@ router.get('/', async function (req, res, next) {
 	res.render('hotels', { title: 'Hotels', hotels: hotels });
 });
 
+//add hotels
 router.post('/', jsonParser, async function (req, res, next) {
 	let Name = req.body.Name;
 	let Location = req.body.Location;
@@ -19,15 +20,23 @@ router.post('/', jsonParser, async function (req, res, next) {
 	res.end();
 });
 
-router.post('/delete', (req, res, next) => {
-	let id = req.body.id;
-	console.log(id);
-	res.end();
-});
-
+//delete hotels
 router.delete('/', jsonParser, async function (req, res, next) {
 	let id = req.body.id;
 	await hotelService.deleteHotel(id);
+	res.end();
+});
+
+//show details of hotel
+router.get('/:hotelId', async function (req, res, next) {
+	const hotel = await hotelService.getHotelDetails(req.params.hotelId);
+	res.render('hotelDetails', { hotel: hotel });
+});
+
+//rate hotel
+router.post('/:hotelId/rate', jsonParser, async function (req, res, next) {
+	let value = req.body.Value;
+	await hotelService.makeARate(1, req.params.hotelId, value);
 	res.end();
 });
 
