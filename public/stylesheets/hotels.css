@@ -1,0 +1,14 @@
+a,
+button {
+	max-width: 150px !important;
+}
+.right {
+	float: right;
+}
+
+#addHotel {
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 50px;
+	margin-left: 60%;
+}
