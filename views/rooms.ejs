@@ -8,14 +8,14 @@
         <div class="list-group">
             <% rooms.forEach(function(room) { %>
                 <div class="row px-3 py-1 w-100">
-                    <span class="col py-1 <%= room.UserId ? 'bg-warning' : 'bg-info' %>>">Room for <%=room.Capacity%> people
+                    <span class="col py-1 bg-secondary text-light rounded me-1">Room for <%=room.Capacity%> people
                         <span class="right">Daily cost:
                             <%=room.PricePerDay%>
                         </span>
                     </span>
                     <button onclick="makeReservation(2,'<%=room.id%>',
                     'http\:\/\/localhost:3000\/rooms\/reservation')" 
-                        class="col btn btn-secondary">
+                        class="col btn btn-success">
                         Rent a room
                     </button>
                 </div>

@@ -8,15 +8,15 @@
         <div class="list-group">
             <% hotels.forEach(function(hotel) { %>
                 <div class="row px-3 py-1 w-100">
-                    <span class="col py-1 bg-info">
+                    <span class="col py-1 bg-secondary text-light rounded me-1">
                         <%=hotel.Name%>
                             <span class="right">
                                 <%=hotel.Location%>
                             </span>
                     </span>
-                    <a href="/rooms/<%=hotel.id%>" class="col btn btn-secondary"> Rent a room</a>
-                    <a href="/hotels/<%=hotel.id%>" class="col btn btn-secondary"> Details</a>
-                    <button onclick="deleteHotel(<%=hotel.id%>)" class="col btn btn-secondary"> Delete</button>
+                    <a href="/rooms/<%=hotel.id%>" class="col btn btn-success me-1"> Rent a room</a>
+                    <a href="/hotels/<%=hotel.id%>" class="col btn btn-success me-1"> Details</a>
+                    <button onclick="deleteHotel(<%=hotel.id%>)" class="col btn btn-success"> Delete</button>
                 </div>
             <% }); %>
         </div>
