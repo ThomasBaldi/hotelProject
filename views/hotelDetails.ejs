@@ -25,7 +25,7 @@
     <% } else {%>
         <div class="text-center">
             <button 
-            onclick="makeRate(1,
+            onclick="makeRate('<%=userId%>',
             'http\:\/\/localhost:3000\/hotels\/<%=hotel.id%>\/rate' )"
             class="btn btn-success"> Rate a hotel</button>
         </div>

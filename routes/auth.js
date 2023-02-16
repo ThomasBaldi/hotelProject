@@ -40,8 +40,9 @@ passport.deserializeUser(function (user, cb) {
 });
 
 router.get('/login', function (req, res, next) {
-	res.render('login');
+	res.render('login', { user: req.user });
 });
+
 router.post(
 	'/login/password',
 	passport.authenticate('local', {
@@ -56,7 +57,7 @@ router.post('/logout', function (req, res, next) {
 		if (err) {
 			return next(err);
 		}
-		res.redirect('/');
+		res.redirect('/login');
 	});
 });
 

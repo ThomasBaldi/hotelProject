@@ -10,13 +10,15 @@ var { checkIfAuthorized } = require('./authMiddlewares');
 //allrooms
 router.get('/', async function (req, res, next) {
 	const rooms = await roomService.get();
-	res.render('rooms', { rooms: rooms });
+	const userId = req.user?.id ?? 0;
+	res.render('rooms', { rooms: rooms, userId });
 });
 
 //all rooms based on hotel
 router.get('/:hotelId', async function (req, res, next) {
 	const rooms = await roomService.getHotelRooms(req.params.hotelId);
-	res.render('rooms', { rooms: rooms });
+	const userId = req.user?.id ?? 0;
+	res.render('rooms', { rooms: rooms, userId });
 });
 
 //add room

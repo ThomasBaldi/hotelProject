@@ -8,9 +8,19 @@ deleteHotel = async (hotelId) => {
 		body: JSON.stringify({
 			id: hotelId,
 		}),
-	}).catch((res) => {
-		alert(res.statusText);
-	});
+	})
+		.then((res) => {
+			if (res.ok) {
+				const resData = 'Hotel deleted';
+				alert(resData);
+				location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(res);
+		})
+		.catch((res) => {
+			alert(res.statusText);
+		});
 };
 
 addHotel = async () => {
@@ -25,14 +35,34 @@ addHotel = async () => {
 			Name: name,
 			Location: location,
 		}),
-	}).catch((res) => {
-		alert(res.statusText);
-	});
+	})
+		.then((res) => {
+			if (res.ok) {
+				const resData = 'Hotel added';
+				alert(resData);
+				location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(res);
+		})
+		.catch((res) => {
+			alert(res.statusText);
+		});
 };
 
 makeReservation = async (userId, roomId, url) => {
+	let pattern =
+		/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01]) ([01][0-9]|(2[0-3])):([0-5][0-9]):([0-5][0-9])$/;
 	let startDate = prompt('Please provide starting date in format YYYY-MM-DD HH:MM:SS');
+	if (!pattern.test(startDate)) {
+		alert('Wrong date format');
+		return;
+	}
 	let endDate = prompt('Please provide ending date in format YYYY-MM-DD HH:MM:SS');
+	if (!pattern.test(endDate)) {
+		alert('Wrong date format');
+		return;
+	}
 	await fetch(url, {
 		method: 'POST',
 		headers: {
@@ -44,10 +74,19 @@ makeReservation = async (userId, roomId, url) => {
 			StartDate: startDate,
 			EndDate: endDate,
 		}),
-	});
-	const resData = 'Made reservation';
-	location.reload();
-	return resData;
+	})
+		.then((res) => {
+			if (res.ok) {
+				const resData = 'Made reservation';
+				alert(resData);
+				location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(res);
+		})
+		.catch((res) => {
+			alert(res.statusText);
+		});
 };
 
 makeRate = async (userId, url) => {
@@ -61,8 +100,18 @@ makeRate = async (userId, url) => {
 			UserId: userId,
 			Value: value,
 		}),
-	});
-	const resData = 'Made a rate';
-	location.reload();
+	})
+		.then((res) => {
+			if (res.ok) {
+				const resData = 'Rating submitted';
+				alert(resData);
+				location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(res);
+		})
+		.catch((res) => {
+			alert(res.statusText);
+		});
 	return resData;
 };
