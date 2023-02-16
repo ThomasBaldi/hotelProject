@@ -5,6 +5,7 @@ var jsonParser = bodyParser.json();
 var RoomService = require('../services/RoomService');
 var db = require('../models');
 var roomService = new RoomService(db);
+var { checkIfAuthorized } = require('./authMiddlewares');
 
 //allrooms
 router.get('/', async function (req, res, next) {
@@ -19,7 +20,7 @@ router.get('/:hotelId', async function (req, res, next) {
 });
 
 //add room
-router.post('/', jsonParser, async function (req, res, next) {
+router.post('/', checkIfAuthorized, jsonParser, async function (req, res, next) {
 	let Capacity = req.body.Capacity;
 	let PricePerDay = req.body.PricePerDay;
 	let HotelId = req.body.HotelId;
@@ -27,20 +28,20 @@ router.post('/', jsonParser, async function (req, res, next) {
 	res.end();
 });
 
-//delete room
-router.delete('/', jsonParser, async function (req, res, next) {
-	let id = req.body.id;
-	await roomService.deleteRoom(id);
-	res.end();
-});
-
 //reserve a room
-router.post('/reservation', jsonParser, async function (req, res, next) {
+router.post('/reservation', checkIfAuthorized, jsonParser, async function (req, res, next) {
 	let userId = req.body.UserId;
 	let roomId = req.body.RoomId;
 	let startDate = req.body.StartDate;
 	let endDate = req.body.EndDate;
 	await roomService.rentARoom(userId, roomId, startDate, endDate);
+	res.end();
+});
+
+//delete room
+router.delete('/', checkIfAuthorized, jsonParser, async function (req, res, next) {
+	let id = req.body.id;
+	await roomService.deleteRoom(id);
 	res.end();
 });
 

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <section class="prompt bg-dark text-light">
+        <h1 class="text-center">Login</h1>
+    <form action="/login/password" method="post">
+        <section>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required autofocus>
+        </section>
+        <section>
+            <label for="current-password">Password</label>
+            <input id="current-password" name="password" type="password" autocomplete="current-password" required>
+        </section>
+        <div class="d-grid col-6 mx-auto">
+        <button type="submit" class="btn btn-danger">Sign in</button>
+        </div>
+    </form>
+    <hr>
+    <p class="help">Don't have an account? <a href="/signup">Sign up</a></p>
+    </section>
+</body>
+
+</html>

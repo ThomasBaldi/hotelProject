@@ -7,10 +7,13 @@ class UserService {
 		this.Reservation = db.Reservation;
 	}
 
-	async create(firstName, lastName) {
+	async create(firstName, lastName, username, salt, encryptedPassword) {
 		return this.User.create({
 			FirstName: firstName,
 			LastName: lastName,
+			Username: username,
+			Salt: salt,
+			EncryptedPassword: encryptedPassword,
 		});
 	}
 
@@ -23,6 +26,21 @@ class UserService {
 	async getOne(userId) {
 		return await this.User.findOne({
 			where: { id: userId },
+			include: {
+				model: this.Room,
+				through: {
+					attributes: ['StartDate', 'EndDate'],
+				},
+				include: {
+					model: this.Hotel,
+				},
+			},
+		});
+	}
+
+	async getOneByName(username) {
+		return await this.User.findOne({
+			where: { username: username },
 			include: {
 				model: this.Room,
 				through: {
