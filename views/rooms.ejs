@@ -16,12 +16,22 @@
                     <% if (user) { %>
                     <button onclick="makeReservation('<%=userId%>','<%=room.id%>',
                     'http\:\/\/localhost:3000\/rooms\/reservation')" 
-                        class="col btn btn-success">
+                        class="col btn btn-success me-1">
                         Rent a room
                     </button>
                     <% } %>
+                    <% if(userRole=='Admin' ) {%>
+                    <button onclick="deleteRoom(<%=room.id%>)" class="col btn btn-danger"> Delete</button>
+                    <% } %>
                 </div>
             <% }); %>
+            <% if(userRole=='Admin' ) {%>
+            <div class="row px-3 py-1 w-100 d-flex justify-content-end">
+                <button onclick="addRoom()" class="col btn btn-warning"> 
+                Add Room 
+                </button>
+            </div>
+            <% } %>
         </div>
     </div>
     <script src="../javascripts/managing.js"></script>

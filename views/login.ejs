@@ -3,6 +3,15 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/navbar.ejs') %>
+    <% if(username){%>
+        <div class="container d-flex justify-content-center mt-5">
+            <h4>You are currently logged in as  
+                <b>
+                <%=username%>
+                </b>
+            </h4>
+        </div>
+        <%}%>
     <section class="prompt bg-dark text-light">
         <h1 class="text-center">Login</h1>
     <form action="/login/password" method="post">

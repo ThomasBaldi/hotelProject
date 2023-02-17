@@ -40,7 +40,8 @@ passport.deserializeUser(function (user, cb) {
 });
 
 router.get('/login', function (req, res, next) {
-	res.render('login');
+	const username = req.user?.username;
+	res.render('login', { username });
 });
 
 router.post(

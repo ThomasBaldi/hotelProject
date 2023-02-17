@@ -5,24 +5,26 @@ var jsonParser = bodyParser.json();
 var RoomService = require('../services/RoomService');
 var db = require('../models');
 var roomService = new RoomService(db);
-var { checkIfAuthorized } = require('./authMiddlewares');
+var { checkIfAuthorized, isAdmin } = require('./authMiddlewares');
 
 //allrooms
 router.get('/', async function (req, res, next) {
 	const rooms = await roomService.get();
 	const userId = req.user?.id ?? 0;
-	res.render('rooms', { rooms: rooms, userId });
+	const userRole = req.user?.role ?? undefined;
+	res.render('rooms', { rooms: rooms, userId, userRole });
 });
 
 //all rooms based on hotel
 router.get('/:hotelId', async function (req, res, next) {
 	const rooms = await roomService.getHotelRooms(req.params.hotelId);
 	const userId = req.user?.id ?? 0;
-	res.render('rooms', { rooms: rooms, userId });
+	const userRole = req.user?.role ?? undefined;
+	res.render('rooms', { rooms: rooms, userId, userRole });
 });
 
 //add room
-router.post('/', checkIfAuthorized, jsonParser, async function (req, res, next) {
+router.post('/', isAdmin, jsonParser, async function (req, res, next) {
 	let Capacity = req.body.Capacity;
 	let PricePerDay = req.body.PricePerDay;
 	let HotelId = req.body.HotelId;

@@ -1,5 +1,4 @@
 deleteHotel = async (hotelId) => {
-	console.log(typeof hotelId);
 	await fetch('/hotels', {
 		method: 'DELETE',
 		headers: {
@@ -39,6 +38,58 @@ addHotel = async () => {
 		.then((response) => {
 			if (response.ok) {
 				const resData = 'Hotel added';
+				alert(resData);
+				window.location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(response);
+		})
+		.catch((response) => {
+			alert(response.statusText);
+		});
+};
+
+addRoom = async () => {
+	let Capacity = prompt('Provide capacity');
+	let PricePerDay = prompt('Provide price per day');
+	let HotelId = prompt('Provide HotelId for this room');
+	await fetch('/rooms', {
+		method: 'POST',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify({
+			Capacity: Capacity,
+			PricePerDay: PricePerDay,
+			HotelId: HotelId,
+		}),
+	})
+		.then((response) => {
+			if (response.ok) {
+				const resData = 'Room added';
+				alert(resData);
+				window.location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(response);
+		})
+		.catch((response) => {
+			alert(response.statusText);
+		});
+};
+deleteRoom = async (roomId) => {
+	await fetch('/rooms', {
+		method: 'DELETE',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify({
+			id: roomId,
+		}),
+	})
+		.then((response) => {
+			if (response.ok) {
+				const resData = 'Deleted room';
 				alert(resData);
 				window.location.reload();
 				return Promise.resolve(resData);

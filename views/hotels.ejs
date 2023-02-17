@@ -16,12 +16,20 @@
                     </span>
                     <a href="/rooms/<%=hotel.id%>" class="col btn btn-success me-1"> Rent a room</a>
                     <a href="/hotels/<%=hotel.id%>" class="col btn btn-success me-1"> Details</a>
-                    <button onclick="deleteHotel(<%=hotel.id%>)" class="col btn btn-success"> Delete</button>
+                <% if(userRole == 'Admin') {%>
+                    <button onclick="deleteHotel(<%=hotel.id%>)" class="col btn btn-danger"> Delete</button>
+                <% } %>
                 </div>
-            <% }); %>
+                <% }); %>
+                <% if(userRole == 'Admin') {%>
+                <div class="row px-3 py-1 w-100 d-flex justify-content-end">
+                    <button onclick="addHotel()" class="col btn btn-warning"> 
+                    Add Hotel
+                </button>
+            </div>
         </div>
-        <button id="addHotel" onclick="addHotel()" class="col btn btn-secondary"> Add Hotel </button>
     </div>
+    <% } %>
     <script src="../javascripts/managing.js"></script>
 </body>
 

@@ -2,11 +2,11 @@
     <ul class="navbar-nav me-3">
         <li class="nav-item">
             <% if (user) { %>
-                <a class="nav-link text-light">
-                    <%= user.username %>
+                <a class="nav-link text-warning d-flex flex-content-start">
+                Hello <%= user.username %>!
                 </a>
             <% } else if (!user) { %>
-                <a class="nav-link text-light">Guest</a>
+                <a class="nav-link text-warning">Guest</a>
             <% } %>
         </li>
         <li class="nav-item">
@@ -21,7 +21,7 @@
         <% if (user)  { %>
             <li class="nav-item">
             <form action="/logout" method="post">
-                <button class="nav-link btn bg-dark text-light" type="submit">Logout</button>
+                <button class="nav-link btn bg-danger text-light" type="submit">Logout</button>
             </form>
             </li>
         <% } else if (!user){ %>
