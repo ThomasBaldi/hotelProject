@@ -13,11 +13,13 @@
                             <%=room.PricePerDay%>
                         </span>
                     </span>
+                    <% if (user) { %>
                     <button onclick="makeReservation('<%=userId%>','<%=room.id%>',
                     'http\:\/\/localhost:3000\/rooms\/reservation')" 
                         class="col btn btn-success">
                         Rent a room
                     </button>
+                    <% } %>
                 </div>
             <% }); %>
         </div>

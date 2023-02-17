@@ -16,19 +16,24 @@
         </i>
     </h4>
     <h3 class="text-center">Rate:</h3>
-    <% if(hotel.rated) { %>
+    <% if(user) { %>
         <h4 class="text-center text-primary">
             <i>
                 <%=hotel.avg%>
             </i>
         </h4>
-    <% } else {%>
         <div class="text-center">
             <button 
             onclick="makeRate('<%=userId%>',
             'http\:\/\/localhost:3000\/hotels\/<%=hotel.id%>\/rate' )"
             class="btn btn-success"> Rate a hotel</button>
         </div>
+    <% } else { %>
+        <h4 class="text-center text-primary">
+            <i>
+                <%=hotel.avg%>
+            </i>
+        </h4>
     <% }; %>
     <script src="../javascripts/managing.js"></script>
 </body>

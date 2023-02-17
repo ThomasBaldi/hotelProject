@@ -39,6 +39,12 @@ app.use(
 );
 app.use(passport.authenticate('session'));
 
+//allow for user and !user to be available across the app to change navbar look
+app.use((req, res, next) => {
+	res.locals.user = req.user;
+	next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/hotels', hotelsRouter);

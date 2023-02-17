@@ -9,17 +9,17 @@ deleteHotel = async (hotelId) => {
 			id: hotelId,
 		}),
 	})
-		.then((res) => {
-			if (res.ok) {
-				const resData = 'Hotel deleted';
+		.then((response) => {
+			if (response.ok) {
+				const resData = 'Deleted hotel';
 				alert(resData);
-				location.reload();
+				window.location.reload();
 				return Promise.resolve(resData);
 			}
-			return Promise.reject(res);
+			return Promise.reject(response);
 		})
-		.catch((res) => {
-			alert(res.statusText);
+		.catch((response) => {
+			alert(response.statusText);
 		});
 };
 
@@ -36,17 +36,17 @@ addHotel = async () => {
 			Location: location,
 		}),
 	})
-		.then((res) => {
-			if (res.ok) {
+		.then((response) => {
+			if (response.ok) {
 				const resData = 'Hotel added';
 				alert(resData);
-				location.reload();
+				window.location.reload();
 				return Promise.resolve(resData);
 			}
-			return Promise.reject(res);
+			return Promise.reject(response);
 		})
-		.catch((res) => {
-			alert(res.statusText);
+		.catch((response) => {
+			alert(response.statusText);
 		});
 };
 
@@ -75,17 +75,17 @@ makeReservation = async (userId, roomId, url) => {
 			EndDate: endDate,
 		}),
 	})
-		.then((res) => {
-			if (res.ok) {
+		.then((response) => {
+			if (response.ok) {
 				const resData = 'Made reservation';
 				alert(resData);
-				location.reload();
+				window.location.reload();
 				return Promise.resolve(resData);
 			}
-			return Promise.reject(res);
+			return Promise.reject(response);
 		})
-		.catch((res) => {
-			alert(res.statusText);
+		.catch((response) => {
+			alert(response.statusText);
 		});
 };
 
@@ -101,17 +101,17 @@ makeRate = async (userId, url) => {
 			Value: value,
 		}),
 	})
-		.then((res) => {
-			if (res.ok) {
-				const resData = 'Rating submitted';
+		.then((response) => {
+			console.log(userId);
+			if (response.ok) {
+				const resData = 'Rated hotel';
 				alert(resData);
-				location.reload();
+				window.location.reload();
 				return Promise.resolve(resData);
 			}
-			return Promise.reject(res);
+			return Promise.reject(response);
 		})
-		.catch((res) => {
-			alert(res.statusText);
+		.catch((response) => {
+			alert(response.statusText);
 		});
-	return resData;
 };

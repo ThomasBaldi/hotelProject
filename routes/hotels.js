@@ -10,14 +10,14 @@ var { checkIfAuthorized } = require('./authMiddlewares');
 /* GET hotels listing. */
 router.get('/', async function (req, res, next) {
 	const hotels = await hotelService.get();
-	res.render('hotels', { title: 'Hotels', hotels: hotels });
+	res.render('hotels', { hotels: hotels, user: req.user });
 });
 
 //show details of hotel
 router.get('/:hotelId', async function (req, res, next) {
 	const userId = req.user?.id ?? 0;
 	const hotel = await hotelService.getHotelDetails(req.params.hotelId, userId);
-	res.render('hotelDetails', { hotel: hotel, userId });
+	res.render('hotelDetails', { hotel: hotel, userId, user: req.user });
 });
 
 //add hotels
@@ -31,7 +31,8 @@ router.post('/', checkIfAuthorized, jsonParser, async function (req, res, next) 
 //rate hotel
 router.post('/:hotelId/rate', checkIfAuthorized, jsonParser, async function (req, res, next) {
 	let value = req.body.Value;
-	await hotelService.makeARate(1, req.params.hotelId, value);
+	const userId = req.body.UserId;
+	await hotelService.makeARate(userId, req.params.hotelId, value);
 	res.end();
 });
 
