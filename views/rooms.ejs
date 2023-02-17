@@ -3,12 +3,14 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/navbar.ejs') %>
-    <div class="container">
+    <div class="container pb-5">
     <h2 class="p-3">Choose a room</h2>
         <div class="list-group">
             <% rooms.forEach(function(room) { %>
                 <div class="row px-3 py-1 w-100">
-                    <span class="col py-1 bg-secondary text-light rounded me-1">Room for <%=room.Capacity%> people
+                    <span class="col py-1 text-light rounded me-1" 
+                    style="background-color: rgba(53, 53, 53, 0.705)">
+                    Room for <%=room.Capacity%> people
                         <span class="right">Daily cost:
                             <%=room.PricePerDay%>
                         </span>
@@ -21,7 +23,10 @@
                     </button>
                     <% } %>
                     <% if(userRole=='Admin' ) {%>
-                    <button onclick="deleteRoom(<%=room.id%>)" class="col btn btn-danger"> Delete</button>
+                    <button onclick="deleteRoom(<%=room.id%>)" 
+                    class="col btn btn-danger">
+                    Delete
+                    </button>
                     <% } %>
                 </div>
             <% }); %>

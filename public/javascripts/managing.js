@@ -166,3 +166,26 @@ makeRate = async (userId, url) => {
 			alert(response.statusText);
 		});
 };
+
+deleteUser = async (userId) => {
+	await fetch('/users', {
+		method: 'DELETE',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify({
+			id: userId,
+		}),
+	})
+		.then((response) => {
+			if (response.ok) {
+				const resData = 'User deleted...';
+				location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(response);
+		})
+		.catch((response) => {
+			alert(response.statusText);
+		});
+};

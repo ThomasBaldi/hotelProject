@@ -22,4 +22,12 @@ module.exports = {
 			res.status(401).send(new Error());
 		}
 	},
+	canSeeUserList: function (req, res, next) {
+		if (req.user != null)
+			if (req.user.role === 'Admin') {
+				next();
+				return;
+			}
+		res.redirect('/login');
+	},
 };

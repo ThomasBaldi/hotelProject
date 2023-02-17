@@ -3,12 +3,13 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/navbar.ejs') %>
-    <div class="container">
+    <div class="container pb-5">
         <h2 class="p-3">Choose a hotel</h2>
         <div class="list-group">
             <% hotels.forEach(function(hotel) { %>
                 <div class="row px-3 py-1 w-100">
-                    <span class="col py-1 bg-secondary text-light rounded me-1">
+                    <span class="col py-1 text-light rounded me-1"
+                    style="background-color: rgba(53, 53, 53, 0.705)">
                         <%=hotel.Name%>
                             <span class="right">
                                 <%=hotel.Location%>

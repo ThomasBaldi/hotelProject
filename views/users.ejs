@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <div class="container pb-5">
+    <h2 class="p-3">Users</h2>
+    <div class="list-group">
+        <% users.forEach(function(user) { %>
+            <div class="row px-3 py-1 w-100">
+                <span class="col py-1 text-light rounded me-1" 
+                    style="background-color: rgba(53, 53, 53, 0.705)">
+                    <%=user.FirstName%>
+                    <%=user.LastName%>
+                </span>
+                <a href="/users/<%=user.id%>" class="col btn btn-success me-1"> 
+                    Details
+                </a>
+                <button
+                onclick="deleteUser(<%=user.id%>)" 
+                class="btn btn-danger"> 
+                DELETE
+                </button>
+            </div>
+        <% }); %>
+    </div>
+    </div>
+    <script src="../javascripts/managing.js"></script>
+</body>
+
+</html>

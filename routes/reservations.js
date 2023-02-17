@@ -3,19 +3,21 @@ var router = express.Router();
 var db = require('../models');
 var UserService = require('../services/UserService');
 var userService = new UserService(db);
+var {
+	canSeeUserList,
+	canSeeUserDetails,
+	checkIfAuthorized,
+	isAdmin,
+} = require('./authMiddlewares');
 
-userIsAdmin = (req, res, next) => {
-	if (req.user != null)
-		if (req.user.role === 'Admin') {
-			next();
-			return;
-		}
-	res.redirect('/login');
-};
-
-router.get('/', userIsAdmin, async function (req, res, next) {
+router.get('/', isAdmin, async function (req, res, next) {
 	const users = await userService.allReservations();
 	res.render('reservations', { users: users });
+});
+
+router.get('/:userId', canSeeUserDetails, async function (req, res, next) {
+	const user = await userService.getOne(req.params.userId);
+	res.render('userReservation', { user: user });
 });
 
 module.exports = router;

@@ -1,3 +1,11 @@
 body {
 	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+	height: 95vh;
+	width: 100%;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../images/alberca-nueva-frente.jpg');
+	background-size: 100% 200vh;
+	background-position: 50% 50%;
+	padding-top: 10vh;
+	margin-bottom: 20vh;
 }
