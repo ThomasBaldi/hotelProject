@@ -1,11 +1,13 @@
 body {
 	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
-	height: 95vh;
+	height: 95vh; /* no scroll if scroll not needed */
 	width: 100%;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-		url('../images/alberca-nueva-frente.jpg');
-	background-size: 100% 200vh;
-	background-position: 50% 50%;
 	padding-top: 10vh;
-	margin-bottom: 20vh;
+	margin-bottom: 10vh;
+	background-image: url('../images/hotelProject.jpg');
+	background-position: 50% 0%;
+	/* make the image fit all screens */
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 }

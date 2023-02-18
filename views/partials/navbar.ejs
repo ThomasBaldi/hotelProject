@@ -15,9 +15,18 @@
         <li class="nav-item">
             <a class="nav-link text-light" href="/rooms">Rooms</a>
         </li>
+        <% if (userRole=='Admin') { %>
+        <li class="nav-item">
+            <a class="nav-link text-light" href="/users">Users</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link text-light" href="/reservations">Reservations</a>
         </li>
+        <% } else if (userRole=='User') {%>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/reservations/<%=user.id%>">Reservations</a>
+            </li>
+        <% } %>
         <% if (user)  { %>
             <li class="nav-item">
             <form action="/logout" method="post">

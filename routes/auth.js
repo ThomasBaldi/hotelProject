@@ -41,7 +41,8 @@ passport.deserializeUser(function (user, cb) {
 
 router.get('/login', function (req, res, next) {
 	const username = req.user?.username;
-	res.render('login', { username });
+	const userRole = req.user?.role ?? undefined;
+	res.render('login', { username, userRole });
 });
 
 router.post(

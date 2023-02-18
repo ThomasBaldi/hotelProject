@@ -14,7 +14,8 @@ var {
 
 router.get('/', canSeeUserList, async function (req, res, next) {
 	const users = await userService.getAll();
-	res.render('users', { users: users });
+	const userRole = req.user?.role ?? undefined;
+	res.render('users', { users: users, userRole });
 });
 
 router.delete('/', checkIfAuthorized, isAdmin, jsonParser, async function (req, res, next) {
