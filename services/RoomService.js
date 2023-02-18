@@ -12,12 +12,16 @@ class RoomService {
 			Capacity: capacity,
 			PricePerDay: pricePerDay,
 			HotelId: hotelId,
+		}).catch((err) => {
+			return err;
 		});
 	}
 
 	async get() {
 		return this.Room.findAll({
 			where: {},
+		}).catch((err) => {
+			return err;
 		});
 	}
 
@@ -26,12 +30,16 @@ class RoomService {
 			where: {
 				HotelId: hotelId,
 			},
+		}).catch((err) => {
+			return err;
 		});
 	}
 
 	async deleteRoom(roomId) {
 		return this.Room.destroy({
 			where: { id: roomId },
+		}).catch((err) => {
+			return err;
 		});
 	}
 
@@ -44,9 +52,6 @@ class RoomService {
 					StartDate: startDate,
 					EndDate: endDate,
 				},
-			})
-			.then((result) => {
-				return result;
 			})
 			.catch((err) => {
 				return err;

@@ -17,8 +17,9 @@ router.get('/', async function (req, res, next) {
 //show details of hotel
 router.get('/:hotelId', async function (req, res, next) {
 	const userId = req.user?.id ?? 0;
+	const userRole = req.user?.role ?? undefined;
 	const hotel = await hotelService.getHotelDetails(req.params.hotelId, userId);
-	res.render('hotelDetails', { hotel: hotel, userId, user: req.user });
+	res.render('hotelDetails', { hotel: hotel, userId, userRole, user: req.user });
 });
 
 //add hotels

@@ -1,30 +1,10 @@
-deleteHotel = async (hotelId) => {
-	await fetch('/hotels', {
-		method: 'DELETE',
-		headers: {
-			'Content-type': 'application/json',
-		},
-		body: JSON.stringify({
-			id: hotelId,
-		}),
-	})
-		.then((response) => {
-			if (response.ok) {
-				const resData = 'Deleted hotel';
-				alert(resData);
-				window.location.reload();
-				return Promise.resolve(resData);
-			}
-			return Promise.reject(response);
-		})
-		.catch((response) => {
-			alert(response.statusText);
-		});
-};
-
 addHotel = async () => {
 	let name = prompt("Provide an hotel's name");
 	let location = prompt('Provide location of new hotel');
+	if (name || location === (null || '')) {
+		alert('Cancelled');
+		return;
+	}
 	await fetch('/hotels', {
 		method: 'POST',
 		headers: {
@@ -49,10 +29,43 @@ addHotel = async () => {
 		});
 };
 
+deleteHotel = async (hotelId) => {
+	let confirm = window.confirm();
+	if (confirm == false) {
+		alert('Deletion cancelled');
+		return;
+	}
+	await fetch('/hotels', {
+		method: 'DELETE',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify({
+			id: hotelId,
+		}),
+	})
+		.then((response) => {
+			if (response.ok) {
+				const resData = 'Deleted hotel';
+				alert(resData);
+				window.location.reload();
+				return Promise.resolve(resData);
+			}
+			return Promise.reject(response);
+		})
+		.catch((response) => {
+			alert(response.statusText);
+		});
+};
+
 addRoom = async () => {
 	let Capacity = prompt('Provide capacity');
 	let PricePerDay = prompt('Provide price per day');
 	let HotelId = prompt('Provide HotelId for this room');
+	if (Capacity || PricePerDay || HotelId == (null || '')) {
+		alert('Cancelled');
+		return;
+	}
 	await fetch('/rooms', {
 		method: 'POST',
 		headers: {
@@ -77,7 +90,13 @@ addRoom = async () => {
 			alert(response.statusText);
 		});
 };
+
 deleteRoom = async (roomId) => {
+	let confirm = window.confirm();
+	if (confirm == false) {
+		alert('Deletion cancelled');
+		return;
+	}
 	await fetch('/rooms', {
 		method: 'DELETE',
 		headers: {
@@ -142,6 +161,10 @@ makeReservation = async (userId, roomId, url) => {
 
 makeRate = async (userId, url) => {
 	let value = prompt('Rate the hotel from 1 to 5');
+	if (value === (null || '')) {
+		alert('Rating cancelled');
+		return;
+	}
 	await fetch(url, {
 		method: 'POST',
 		headers: {
@@ -168,6 +191,11 @@ makeRate = async (userId, url) => {
 };
 
 deleteUser = async (userId) => {
+	let confirm = window.confirm();
+	if (confirm == false) {
+		alert('Deletion cancelled');
+		return;
+	}
 	await fetch('/users', {
 		method: 'DELETE',
 		headers: {
