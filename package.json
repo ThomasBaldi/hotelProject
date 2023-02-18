@@ -4,7 +4,7 @@
 	"private": true,
 	"proxy": "http://localhost:3000/",
 	"scripts": {
-		"start": "supervisor set NODE_ENV=development&& node ./bin/www"
+		"start": "supervisor node ./bin/www"
 	},
 	"dependencies": {
 		"connect-sqlite3": "^0.9.13",

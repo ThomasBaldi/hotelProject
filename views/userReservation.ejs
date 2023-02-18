@@ -4,13 +4,11 @@
     <body>
         <%- include('./partials/navbar.ejs') %>
             <div class="container">
-                <h2 class="text-center text-primary mt-3"><i>
-                        <%=user.FirstName%>
-                            <%=user.LastName%>
-                    </i></h2>
                 <h3 class="p-3">My reservations</h2>
-                    <div class="container bg-light rounded" style="opacity: 0.7;">
-                        <table class="table">
+                    <div class="container">
+                        <table class="table rounded text-light"
+                        style="background-color: rgba(53, 53, 53, 0.651); 
+                        box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;">
                             <thead>
                                 <tr>
                                     <th scope="col">Hotel name</th>

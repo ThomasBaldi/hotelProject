@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
 <%- include('./partials/head.ejs') %>
+
   <body>
     <%- include('./partials/navbar.ejs') %>
-      <div class="container">
+      <div class="container mt-3 rounded" style="
+            height: 100%;
+            display: grid;
+            align-content: center;
+            justify-self: center;
+            padding-top: 15vh;
+            padding-bottom: 15vh;
+            ">
         <% if(user){ %>
-        <h2 class="text-center text-dark mt-3">
-          Welcome back 
-          <%=user.FirstName%>
-          <%=user.LastName%>
-          !
-        </h2>
-        <h2 class="p-3">Your reservations:</h2>
-          <div class="container bg-light rounded" style="opacity: 0.7;">
+          <h2 class="text-center text-light mt-3"
+          style="text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+            0px 8px 13px rgba(0,0,0,0.1),
+            0px 18px 23px rgba(0,0,0,0.1);">
+            Welcome back
+            <%=user.FirstName%>
+              <%=user.LastName%>
+                !
+          </h2>
+          <h2 class="text-center text-light p-3"
+          style="text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+            0px 8px 13px rgba(0,0,0,0.1),
+            0px 18px 23px rgba(0,0,0,0.1);">
+          Your current reservations:</h2>
+          <div class="container rounded"
+          style="background-color: rgba(53, 53, 53, 0.788)">
             <table class="table">
-              <thead>
+              <thead class="text-warning">
                 <tr>
                   <th scope="col">Hotel name</th>
                   <th scope="col">Hotel location</th>
@@ -24,7 +40,7 @@
                   <th scope="col">Rent to:</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="text-light">
                 <% user.Rooms.forEach(function(room){ %>
                   <tr>
                     <td>
@@ -46,26 +62,49 @@
                       <%=new Date(room.Reservation.EndDate).toLocaleDateString()%>
                     </td>
                   </tr>
-                <% });%>
-                <% } else {%>
-                  <h2 class="text-center text-dark mt-3 mb-3">
-                    Dear guest, welcome to bookaroo!
-                  </h2>
-                  <div class="container text-center text-light rounded pt-3 pb-3" 
-                  style="background-color: rgba(53, 53, 53, 0.705)">
-                  <h4>Take a look at our hotel listings 
-                    <a href="/hotels">here</a>!
-                  </h4>
-                  <h4> If you wish to start on booking, please register a user 
-                    <a href="/signup">here.</a>
-                  </h4>
-                  <h4>With an account you'll then be able to book rooms and check your reservations</h4>
-                  </div>
-                  <% };%>
               </tbody>
             </table>
           </div>
+        <% })};%>
+        <% if(!user) {%>
+        <div class="container text-center text-light rounded pt-3 pb-3"
+          style="background-color: rgba(53, 53, 53, 0.788)">
+          <h2 class="text-center text-warning mt-3 mb-3">
+            Dear guest, welcome to bookaroo!
+          </h2>
+          <h4>Take a look at our hotel listings
+            <a href="/hotels">here</a>!
+          </h4>
+          <h4> If you wish to start on booking, please register a user
+            <a href="/signup">here</a>.
+          </h4>
+          <h4>With an account you'll then be able to book rooms and check your reservations.</h4>
+        </div>
+        <% };%>
+        <div class="rounded mx-auto w-75 mt-3 p-3" 
+        style="background-color: rgba(53, 53, 53, 0.788)">
+        <div class="container">
+          <div class="row h-100">
+        <h4 class="col my-auto text-light text-end">Best rated listing atm -></h4>
+        <div class="col-7 rounded" style="box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;">
+          <h2 class="text-center text-danger mb-2">
+            <%=hotel.Name%>
+          </h2>
+          <h3 class="text-center text-light mb-2">Location:
+            <i class="text-center text-warning">
+              <%=hotel.Location%>
+            </i>
+          </h3>
+          <h3 class="text-center text-light">
+          Rating:
+            <i class="text-center text-warning">
+              <%=hotel.avg%>
+            </i>
+          </h3>
+          </div>
+          </div>
+          </div>
+        </div>
       </div>
   </body>
-
 </html>
