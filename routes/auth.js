@@ -64,7 +64,9 @@ router.post('/logout', function (req, res, next) {
 });
 
 router.get('/signup', function (req, res, next) {
-	res.render('signup');
+	const username = req.user?.username;
+	const userRole = req.user?.role ?? undefined;
+	res.render('signup', { username, userRole });
 });
 
 router.post('/signup', function (req, res, next) {

@@ -2,40 +2,45 @@
 <html>
 <%- include('./partials/head.ejs') %>
 
-<body>
-    <%- include('./partials/navbar.ejs') %>
-    <h2 class="text-center text-primary">
-        <i>
-            <%=hotel.Name%>
-        </i>
-    </h2>
-    <h3 class="text-center">Location:</h3>
-    <h4 class="text-center text-primary">
-        <i>
-            <%=hotel.Location%>
-        </i>
-    </h4>
-    <h3 class="text-center">Rate:</h3>
-    <% if(user) { %>
-        <h4 class="text-center text-primary">
-            <i>
-                <%=hotel.avg%>
-            </i>
-        </h4>
-        <div class="text-center">
-            <button 
-            onclick="makeRate('<%=userId%>',
-            'http\:\/\/localhost:3000\/hotels\/<%=hotel.id%>\/rate' )"
-            class="btn btn-success"> Rate a hotel</button>
-        </div>
-    <% } else { %>
-        <h4 class="text-center text-primary">
-            <i>
-                <%=hotel.avg%>
-            </i>
-        </h4>
-    <% }; %>
-    <script src="../javascripts/managing.js"></script>
-</body>
+    <body>
+        <%- include('./partials/navbar.ejs') %>
+            <div class="container" style="
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;">
+                <div class="row w-50 rounded p-3" style="background-color: rgba(53, 53, 53, 0.829);">
+                    <h2 class="text-center text-danger mb-2">
+                        <%=hotel.Name%>
+                    </h2>
+                    <h3 class="text-center text-light mb-2">Location:
+                        <i class="text-center text-warning">
+                            <%=hotel.Location%>
+                        </i>
+                    </h3>
+                    <% if(user) { %>
+                    <h3 class="text-center text-light">
+                        Rating:
+                        <i class="text-center text-warning">
+                            <%=hotel.avg%>
+                        </i>
+                    </h3>
+                    <div class="text-center">
+                        <button onclick="makeRate('<%=userId%>',
+                        'http\:\/\/localhost:3000\/hotels\/<%=hotel.id%>\/rate')" class="btn btn-success"> Rate a
+                            hotel</button>
+                    </div>
+                    <% } else { %>
+                    <h3 class="text-center text-light">
+                        Rating:
+                        <i class="text-center text-warning">
+                            <%=hotel.avg%>
+                        </i>
+                    </h3>
+                </div>
+                <% }; %>
+            </div>
+        <script src="../javascripts/managing.js"></script>
+    </body>
 
 </html>

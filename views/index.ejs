@@ -1,9 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <%- include('./partials/head.ejs') %>
+<%- include('./partials/head.ejs') %>
   <body>
     <%- include('./partials/navbar.ejs') %>
-    <h1>HotelProject</h1>
-    <p>Welcome to my booking project</p>
+      <div class="container">
+        <% if(user){ %>
+        <h2 class="text-center text-dark mt-3">
+          Welcome back 
+          <%=user.FirstName%>
+          <%=user.LastName%>
+          !
+        </h2>
+        <h2 class="p-3">Your reservations:</h2>
+          <div class="container bg-light rounded" style="opacity: 0.7;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Hotel name</th>
+                  <th scope="col">Hotel location</th>
+                  <th scope="col">Room capacity</th>
+                  <th scope="col">Price per day</th>
+                  <th scope="col">Rent from:</th>
+                  <th scope="col">Rent to:</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% user.Rooms.forEach(function(room){ %>
+                  <tr>
+                    <td>
+                      <%=room.Hotel.Name%>
+                    </td>
+                    <td>
+                      <%=room.Hotel.Location%>
+                    </td>
+                    <td>
+                      <%=room.Capacity%>
+                    </td>
+                    <td>
+                      <%=room.PricePerDay%>
+                    </td>
+                    <td>
+                      <%=new Date(room.Reservation.StartDate).toLocaleDateString()%>
+                    </td>
+                    <td>
+                      <%=new Date(room.Reservation.EndDate).toLocaleDateString()%>
+                    </td>
+                  </tr>
+                <% });%>
+                <% } else {%>
+                  <h2 class="text-center text-dark mt-3 mb-3">
+                    Dear guest, welcome to bookaroo!
+                  </h2>
+                  <div class="container text-center text-light rounded pt-3 pb-3" 
+                  style="background-color: rgba(53, 53, 53, 0.705)">
+                  <h4>Take a look at our hotel listings 
+                    <a href="/hotels">here</a>!
+                  </h4>
+                  <h4> If you wish to start on booking, please register a user 
+                    <a href="/signup">here.</a>
+                  </h4>
+                  <h4>With an account you'll then be able to book rooms and check your reservations</h4>
+                  </div>
+                  <% };%>
+              </tbody>
+            </table>
+          </div>
+      </div>
   </body>
+
 </html>

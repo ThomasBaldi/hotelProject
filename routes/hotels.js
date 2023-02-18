@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var HotelService = require('../services/HotelService');
 var db = require('../models');
+var HotelService = require('../services/HotelService');
 var hotelService = new HotelService(db);
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();

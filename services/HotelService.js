@@ -51,5 +51,11 @@ class HotelService {
 			Value: value,
 		});
 	}
+
+	async getBestRate() {
+		return await this.Rate.findOne({
+			order: [['Value', 'Desc']],
+		});
+	}
 }
 module.exports = HotelService;
