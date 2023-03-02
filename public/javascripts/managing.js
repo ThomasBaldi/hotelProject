@@ -217,3 +217,24 @@ deleteUser = async (userId) => {
 			alert(response.statusText);
 		});
 };
+
+updateUrl = (url, filtersAdded) => {
+	if (filtersAdded == 0) {
+		url += '?';
+	} else {
+		url += '&';
+	}
+	return url;
+};
+
+applyFilters = () => {
+	let url = 'http://localhost:3000/hotels';
+	let filtersAdded = 0;
+	const searchFilter = document.getElementById('search-input').value;
+	if (searchFilter !== '') {
+		url = updateUrl(url, filtersAdded);
+		url += 'location=' + searchFilter;
+		filtersAdded++;
+	}
+	window.location.href = url;
+};

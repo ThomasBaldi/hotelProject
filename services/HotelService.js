@@ -13,9 +13,9 @@ class HotelService {
 		});
 	}
 
-	async get() {
+	async get(locationCondition) {
 		return this.Hotel.findAll({
-			where: {},
+			where: locationCondition,
 		});
 	}
 

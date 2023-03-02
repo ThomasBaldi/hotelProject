@@ -4,11 +4,14 @@ var db = require('../models');
 var HotelService = require('../services/HotelService');
 var hotelService = new HotelService(db);
 var { checkIfAuthorized, isAdmin } = require('./authMiddlewares');
+const { Op } = require('sequelize');
 
 /* GET hotels listing. */
 router.get('/', async function (req, res, next) {
-	const hotels = await hotelService.get();
+	const { location } = req.query;
 	const userRole = req.user?.role ?? undefined;
+	const locationCondition = location ? { location: { [Op.like]: `%${location}%` } } : null;
+	const hotels = await hotelService.get(locationCondition);
 	res.render('hotels', { hotels: hotels, user: req.user, userRole });
 });
 
