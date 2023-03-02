@@ -32,7 +32,5 @@ Object.keys(db).forEach((modelName) => {
 		db[modelName].associate(db);
 	}
 });
-//force false means tables get created only if not existing
-db.sequelize.sync({ force: false });
 
 module.exports = db;

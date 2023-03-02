@@ -3,7 +3,7 @@
         <li class="nav-item">
             <% if (user) { %>
                 <a class="nav-link text-warning d-flex flex-content-start">
-                Hello <%= user.username %>!
+                Hello <%= user.Username || user.username %>!
                 </a>
             <% } else if (!user) { %>
                 <a class="nav-link text-warning">Guest</a>

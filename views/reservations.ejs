@@ -6,10 +6,10 @@
         <%- include('./partials/navbar.ejs') %>
             <div class="container">
                 <h2 class="p-3 text-dark">Users Reservations</h2>
-                    <table class="table rounded text-light"
+                    <table class="table rounded"
                         style="background-color: rgba(53, 53, 53, 0.651); 
                         box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;">
-                        <thead>
+                        <thead class="text-warning">
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Surame</th>
@@ -21,7 +21,7 @@
                                 <th scope="col">Rent to:</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-light">
                             <% users.forEach((user)=>{ %>
                                 <% user.Rooms.forEach((room)=>{ %>
                                 <tr>

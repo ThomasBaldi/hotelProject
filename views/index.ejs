@@ -13,20 +13,20 @@
             padding-bottom: 15vh;
             ">
         <% if(user){ %>
-          <h2 class="text-center text-light mt-3"
+          <div class="rounded mx-auto w-75 mb-3 ps-3 pe-3" 
           style="text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-            0px 8px 13px rgba(0,0,0,0.1),
-            0px 18px 23px rgba(0,0,0,0.1);">
+                      0px 8px 13px rgba(0,0,0,0.1),
+                      0px 18px 23px rgba(0,0,0,0.1);
+                      background-color: rgba(37, 86, 105, 0.788)">
+          <h1 class="text-center text-light mt-3">
             Welcome back
             <%=user.FirstName%>
               <%=user.LastName%>
                 !
-          </h2>
-          <h2 class="text-center text-light p-3"
-          style="text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
-            0px 8px 13px rgba(0,0,0,0.1),
-            0px 18px 23px rgba(0,0,0,0.1);">
-          Your current reservations:</h2>
+          </h1>
+          <h1 class="text-center text-light p-3">
+          Your current reservations:</h1>
+          </div>
           <div class="container rounded"
           style="background-color: rgba(53, 53, 53, 0.788)">
             <table class="table">
@@ -62,10 +62,11 @@
                       <%=new Date(room.Reservation.EndDate).toLocaleDateString()%>
                     </td>
                   </tr>
+                  <% }) %>
               </tbody>
             </table>
           </div>
-        <% })};%>
+        <% };%>
         <% if(!user) {%>
         <div class="container text-center text-light rounded pt-3 pb-3"
           style="background-color: rgba(53, 53, 53, 0.788)">
@@ -82,12 +83,16 @@
         </div>
         <% };%>
         <div class="rounded mx-auto w-75 mt-3 p-3" 
-        style="background-color: rgba(53, 53, 53, 0.788)">
+        style="background-color: rgba(37, 86, 105, 0.788)">
         <div class="container">
           <div class="row h-100">
         <h4 class="col my-auto text-light text-end">Best rated listing atm -></h4>
-        <div class="col-7 rounded" style="box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;">
-          <h2 class="text-center text-danger mb-2">
+        <div class="col-7 rounded"
+        style="text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+            0px 8px 13px rgba(0,0,0,0.1),
+            0px 18px 23px rgba(0,0,0,0.1);">
+          <a href="/rooms/<%=hotel.id%>" style="text-decoration:none;">
+          <h2 class="text-center text-warning mb-2">
             <%=hotel.Name%>
           </h2>
           <h3 class="text-center text-light mb-2">Location:
@@ -101,6 +106,7 @@
               <%=hotel.avg%>
             </i>
           </h3>
+          </a>
           </div>
           </div>
           </div>

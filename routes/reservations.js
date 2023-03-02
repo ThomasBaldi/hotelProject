@@ -3,12 +3,7 @@ var router = express.Router();
 var db = require('../models');
 var UserService = require('../services/UserService');
 var userService = new UserService(db);
-var {
-	canSeeUserList,
-	canSeeUserDetails,
-	checkIfAuthorized,
-	isAdmin,
-} = require('./authMiddlewares');
+var { canSeeUserDetails, isAdmin } = require('./authMiddlewares');
 
 router.get('/', isAdmin, async function (req, res, next) {
 	const users = await userService.allReservations();
