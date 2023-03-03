@@ -4,13 +4,23 @@
 <body>
     <%- include('./partials/navbar.ejs') %>
     <div class="container pb-5">
-    <h2 class="p-3">Choose a room</h2>
+    <h1 class="p-3">Choose a room</h1>
+    <div class="input-group ps-3 pb-2 w-50">
+        <input class="col-8" 
+        type="search" 
+        id="search-input" 
+        class="form-control rounded" 
+        placeholder="Search by Room Capacity"
+        aria-label="Search" 
+        aria-describedby="search-addon" />
+        <input type="submit" class="col-2 btn btn-success" onclick="applyFiltersRoom()" value="Submit">
+    </div>
         <div class="list-group">
             <% rooms.forEach(function(room) { %>
                 <div class="row px-3 py-1 w-100">
                     <span class="col py-1 text-light rounded me-1" 
                     style="background-color: rgba(53, 53, 53, 0.705)">
-                    Room for <%=room.Capacity%> people
+                    Room for <%=room.Capacity%> at <%=room.Hotel.Name%> (<%=room.Hotel.Location%>)
                         <span class="right">Daily cost:
                             <%=room.PricePerDay%>
                         </span>

@@ -238,3 +238,15 @@ applyFilters = () => {
 	}
 	window.location.href = url;
 };
+
+applyFiltersRoom = () => {
+	let url = 'http://localhost:3000/rooms';
+	let filtersAdded = 0;
+	const searchFilter = document.getElementById('search-input').value;
+	if (searchFilter !== '') {
+		url = updateUrl(url, filtersAdded);
+		url += 'capacity=' + searchFilter;
+		filtersAdded++;
+	}
+	window.location.href = url;
+};

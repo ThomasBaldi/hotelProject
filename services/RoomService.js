@@ -4,6 +4,7 @@ class RoomService {
 	constructor(db) {
 		this.client = db.sequelize;
 		this.Room = db.Room;
+		this.Hotel = db.Hotel;
 		this.Reservation = db.Reservation;
 	}
 
@@ -17,9 +18,14 @@ class RoomService {
 		});
 	}
 
-	async get() {
+	async get(capacityCondition) {
 		return this.Room.findAll({
-			where: {},
+			raw: true,
+			nest: true,
+			where: capacityCondition,
+			include: {
+				model: this.Hotel,
+			},
 		}).catch((err) => {
 			return err;
 		});

@@ -1,5 +1,5 @@
 body {
-	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	height: 95vh; /* no scroll if scroll not needed */
 	width: 100%;
 	padding-top: 10vh;
@@ -10,4 +10,56 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+}
+
+a,
+button {
+	max-width: 150px !important;
+}
+.right {
+	float: right;
+}
+
+/* login page */
+.prompt {
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 25px;
+	background: #fff;
+	border: 1px solid #e6e6e6;
+	border-radius: 8px;
+}
+
+a.google {
+	background: #4787ed;
+}
+
+form section {
+	margin: 0 0 20px 0;
+	position: relative; /* for password toggle positioning */
+}
+
+label {
+	display: block;
+	margin: 0 0 3px 0;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+input {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #d9d9d9;
+	border-radius: 5px;
+}
+
+p.help {
+	text-align: center;
+	font-weight: 400;
+}
+
+.row {
+	margin: auto;
 }
