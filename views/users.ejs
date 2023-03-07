@@ -4,7 +4,12 @@
 <body>
     <%- include('./partials/navbar.ejs') %>
     <div class="container pb-5">
-        <h2 class="p-3">Users</h2>
+        <h1 class="p-3">Users</h1>
+        <div class="input-group ps-3 pb-2 w-50">
+            <input class="col-8" type="search" id="search-input" class="form-control rounded"
+                placeholder="Search by Users Name" aria-label="Search" aria-describedby="search-addon" />
+            <input type="submit" class="col-2 btn btn-success" onclick="applyFiltersUsers()" value="Submit">
+        </div>
         <div class="list-group">
             <% users.forEach(function(user) { %>
                 <div class="row px-3 py-1 w-100">

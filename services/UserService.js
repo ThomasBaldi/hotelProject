@@ -19,9 +19,13 @@ class UserService {
 		});
 	}
 
-	async getAll() {
+	async getAll(nameCondition) {
 		return this.User.findAll({
-			where: {},
+			raw: true,
+			nest: true,
+			where: nameCondition,
+		}).catch((err) => {
+			return err;
 		});
 	}
 

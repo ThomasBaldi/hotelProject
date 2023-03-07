@@ -1,3 +1,4 @@
+//hotel calls handlers
 addHotel = async () => {
 	let name = prompt("Provide an hotel's name");
 	let location = prompt('Provide location of new hotel');
@@ -58,6 +59,7 @@ deleteHotel = async (hotelId) => {
 		});
 };
 
+//room calls handlers
 addRoom = async () => {
 	let Capacity = prompt('Provide capacity');
 	let PricePerDay = prompt('Provide price per day');
@@ -190,6 +192,7 @@ makeRate = async (userId, url) => {
 		});
 };
 
+//users calls handlers
 deleteUser = async (userId) => {
 	let confirm = window.confirm();
 	if (confirm == false) {
@@ -218,6 +221,7 @@ deleteUser = async (userId) => {
 		});
 };
 
+//page filtering/ordering
 updateUrl = (url, filtersAdded) => {
 	if (filtersAdded == 0) {
 		url += '?';
@@ -246,6 +250,18 @@ applyFiltersRoom = () => {
 	if (searchFilter !== '') {
 		url = updateUrl(url, filtersAdded);
 		url += 'capacity=' + searchFilter;
+		filtersAdded++;
+	}
+	window.location.href = url;
+};
+
+applyFiltersUsers = () => {
+	let url = 'http://localhost:3000/users';
+	let filtersAdded = 0;
+	const searchFilter = document.getElementById('search-input').value;
+	if (searchFilter !== '') {
+		url = updateUrl(url, filtersAdded);
+		url += 'name=' + searchFilter;
 		filtersAdded++;
 	}
 	window.location.href = url;
