@@ -7,7 +7,7 @@
     <h1 class="p-3">Choose a room</h1>
     <div class="input-group ps-3 pb-2 w-50">
         <input class="col-8" 
-        type="search" 
+        type="number" 
         id="search-input" 
         class="form-control rounded" 
         placeholder="Search by Room Capacity"
@@ -20,7 +20,11 @@
                 <div class="row px-3 py-1 w-100">
                     <span class="col py-1 text-light rounded me-1" 
                     style="background-color: rgba(53, 53, 53, 0.705)">
-                    Room for <%=room.Capacity%> at <%=room.Hotel.Name%> (<%=room.Hotel.Location%>)
+                    Room for <%=room.Capacity%>  
+                    <% if(room.Hotel) {%>
+                        at
+                    <%=room.Hotel.Name%> (<%=room.Hotel.Location%>)
+                    <% } %>
                         <span class="right">Daily cost:
                             <%=room.PricePerDay%>
                         </span>

@@ -6,10 +6,10 @@
             <div class="container">
                 <h1 class="p-3"><%= user.Username%>'s reservations</h1>
                     <div class="container">
-                        <table class="table rounded text-light"
+                        <table
                         style="background-color: rgba(53, 53, 53, 0.651); 
                         box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;">
-                            <thead>
+                            <thead class="table rounded text-warning">
                                 <tr>
                                     <th scope="col">Hotel name</th>
                                     <th scope="col">Hotel location</th>
@@ -19,7 +19,7 @@
                                     <th scope="col">Rent to:</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table rounded text-light">
                                 <% user.Rooms.forEach(function(room){ %>
                                     <tr>
                                         <td>

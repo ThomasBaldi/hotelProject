@@ -59,9 +59,9 @@ class UserService {
 		});
 	}
 
-	async allReservations() {
+	async allReservations(nameCondition) {
 		return await this.User.findAll({
-			where: {},
+			where: nameCondition,
 			include: {
 				model: this.Room,
 				through: {

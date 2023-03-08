@@ -266,3 +266,15 @@ applyFiltersUsers = () => {
 	}
 	window.location.href = url;
 };
+
+applyFiltersRes = () => {
+	let url = 'http://localhost:3000/reservations';
+	let filtersAdded = 0;
+	const searchFilter = document.getElementById('search-input').value;
+	if (searchFilter !== '') {
+		url = updateUrl(url, filtersAdded);
+		url += 'name=' + searchFilter;
+		filtersAdded++;
+	}
+	window.location.href = url;
+};
