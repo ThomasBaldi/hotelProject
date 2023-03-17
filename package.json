@@ -1,10 +1,11 @@
 {
 	"name": "hotelproject",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"private": true,
 	"proxy": "http://localhost:3000/",
 	"scripts": {
-		"start": "supervisor node ./bin/www"
+		"start": "node ./bin/www",
+		"dev": "supervisor node ./bin/www"
 	},
 	"dependencies": {
 		"connect-sqlite3": "^0.9.13",

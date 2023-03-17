@@ -4,13 +4,7 @@ var db = require('../models');
 var UserService = require('../services/UserService');
 var userService = new UserService(db);
 const { Op } = require('sequelize');
-
-var {
-	canSeeUserList,
-	canSeeUserDetails,
-	checkIfAuthorized,
-	isAdmin,
-} = require('./authMiddlewares');
+var { canSeeUserList, checkIfAuthorized, isAdmin } = require('./authMiddlewares');
 
 router.get('/', canSeeUserList, async function (req, res, next) {
 	const { name } = req.query;
