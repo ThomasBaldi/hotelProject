@@ -72,7 +72,8 @@ GRANT ALL ON yourNewlyCreatedDatabaseName.* TO 'yourAdminUser'@'localhost';
   INSERT INTO yourNewlyCreatedDatabaseName.reservations (StartDate, EndDate, RoomId, UserId) VALUE
   ('2023-10-01 10:00:00', '2023-10-05 10:00:00', 3, 1);
 
-  Please note that adding users with queries will create issues when attempting a login, as passport is set up to use unique password encryption and salting(which would need to match upon validation).
+  Please note that adding users with queries will create issues when attempting a login, as passport is
+  set up to use unique password encryption and salting(which would need to match upon validation).
   ```
 
 - We also need to add a stored procedure to the database in order to be able to add reservations through the rentARoom method from /services/RoomService (which is the one in use when making a reservation from the website). In mySQL workbench, add it with the following query (remember to change the databse and user names):
