@@ -81,7 +81,8 @@ GRANT ALL ON yourNewlyCreatedDatabaseName.* TO 'yourAdminUser'@'localhost';
 ```
 DELIMITER $$
 USE `yourNewlyCreatedDatabaseName`$$
-CREATE DEFINER=`yourAdminUser`@`localhost` PROCEDURE `insert_reservation`(_UserId INT, _RoomId INT, _StartDate DATETIME, _EndDate DATETIME)
+CREATE DEFINER=`yourAdminUser`@`localhost` PROCEDURE `insert_reservation`
+(_UserId INT, _RoomId INT, _StartDate DATETIME, _EndDate DATETIME)
 BEGIN
 INSERT INTO Reservations
 SET UserId = _UserId, RoomId = _RoomID,  StartDate = _StartDate, EndDate = _EndDate;
