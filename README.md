@@ -42,23 +42,8 @@ CREATE USER yourAdminUser@localhost IDENTIFIED WITH mysql_native_password BY 'yo
 GRANT ALL ON yourNewlyCreatedDatabaseName.* TO 'yourAdminUser'@'localhost';
 ```
 
-- We also need to add a stored procedure to the database in order to be able to add reservations through the rentARoom method from /services/RoomService (which is the one in use when making a reservation from the website). In mySQL workbench, add it with the following query (remember to change the databse and user names):
-
-```
-DELIMITER $$
-USE `yourNewlyCreatedDatabaseName`$$
-CREATE DEFINER=`yourAdminUser`@`localhost` PROCEDURE `insert_reservation`(_UserId INT, _RoomId INT, _StartDate DATETIME, _EndDate DATETIME)
-BEGIN
-INSERT INTO Reservations
-SET UserId = _UserId, RoomId = _RoomID,  StartDate = _StartDate, EndDate = _EndDate;
-END$$
-
-DELIMITER ;
-;
-```
-
-- Now, you can go back to VScode and run `NPM start` in your terminal. This will start the server at http://localhost:3000 and will trigger the creation of the database tables (/models).
-  The creation of such tables will be happen only if they do not already exist in that specific database, avoiding overwriting of existing tables.
+- Now, you can go back to VScode and run `NPM start` in your terminal. This will start the server and will trigger the creation of the database tables (/models).
+  The creation of such tables will happen only if they do not already exist in that specific database, avoiding overwriting of existing tables.
 
 - Going forward, you can choose 2 ways of populating your DBs tables:
 
@@ -90,8 +75,27 @@ DELIMITER ;
   Please note that adding users with queries will create issues when attempting a login, as passport is set up to use unique password encryption and salting(which would need to match upon validation).
   ```
 
+- We also need to add a stored procedure to the database in order to be able to add reservations through the rentARoom method from /services/RoomService (which is the one in use when making a reservation from the website). In mySQL workbench, add it with the following query (remember to change the databse and user names):
+
+```
+DELIMITER $$
+USE `yourNewlyCreatedDatabaseName`$$
+CREATE DEFINER=`yourAdminUser`@`localhost` PROCEDURE `insert_reservation`(_UserId INT, _RoomId INT, _StartDate DATETIME, _EndDate DATETIME)
+BEGIN
+INSERT INTO Reservations
+SET UserId = _UserId, RoomId = _RoomID,  StartDate = _StartDate, EndDate = _EndDate;
+END$$
+
+DELIMITER ;
+;
+```
+
+In this small project, I've decided to let each user have the possibility to book multiple rooms from multiple hotels, but as it is set up, it is only allowing one booking per specific room. Attempting to book thye same room for equal or different dates will not overwrite the booking and will not add a new booking either.
+
 - Users with a User role can browse the entire website apart from seeing the users page. They can filter their search in each page and they can see a list of all reservations they have. They will not be able to see or use the add and delete buttons in each page, but they will be able to make reservations and/or give a rating to a hotel.
+
 - Users with an Admin role can perform all the exact same actions a User can, plus they can add and delete hotels/rooms/users (Admin users can't be deleted, unless they are deleted manually from the database).
+
 - Guest users have limited access to the website. They can view the hotels and rooms pages, they can view hotel ratings through thew details button, but can't rent a room.
 
 ## Dependencies/frameworks/languages in use
