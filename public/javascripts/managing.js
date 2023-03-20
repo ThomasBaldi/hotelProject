@@ -161,7 +161,7 @@ makeReservation = async (userId, roomId, url) => {
 		});
 };
 
-makeRate = async (userId, url) => {
+giveARating = async (userId, url) => {
 	let value = prompt('Rate the hotel from 1 to 5');
 	if (value === (null || '')) {
 		alert('Rating cancelled');

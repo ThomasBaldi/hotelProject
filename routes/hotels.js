@@ -31,11 +31,11 @@ router.post('/', checkIfAuthorized, isAdmin, async function (req, res, next) {
 	res.end();
 });
 
-//rate hotel
-router.post('/:hotelId/rate', checkIfAuthorized, async function (req, res, next) {
+//rating hotel
+router.post('/:hotelId/rating', checkIfAuthorized, async function (req, res, next) {
 	let value = req.body.Value;
 	const userId = req.body.UserId;
-	await hotelService.makeARate(userId, req.params.hotelId, value);
+	await hotelService.giveRating(userId, req.params.hotelId, value);
 	res.end();
 });
 

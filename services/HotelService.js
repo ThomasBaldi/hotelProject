@@ -2,7 +2,7 @@ class HotelService {
 	constructor(db) {
 		this.client = db.sequelize;
 		this.Hotel = db.Hotel;
-		this.Rate = db.Rate;
+		this.Rating = db.Rating;
 		this.User = db.User;
 	}
 
@@ -38,14 +38,14 @@ class HotelService {
 			},
 		});
 		hotel.avg =
-			hotel.Users.map((x) => x.Rate.dataValues.Value).reduce((a, b) => a + b, 0) /
+			hotel.Users.map((x) => x.Rating.dataValues.Value).reduce((a, b) => a + b, 0) /
 			hotel.Users.length;
 		hotel.rated = hotel.Users.filter((x) => x.dataValues.id == userId).length > 0;
 		return hotel;
 	}
 
-	async makeARate(userId, hotelId, value) {
-		return this.Rate.create({
+	async giveRating(userId, hotelId, value) {
+		return this.Rating.create({
 			UserId: userId,
 			HotelId: hotelId,
 			Value: value,
@@ -53,7 +53,7 @@ class HotelService {
 	}
 
 	async getBestRate() {
-		return await this.Rate.findOne({
+		return await this.Rating.findOne({
 			order: [['Value', 'Desc']],
 		});
 	}

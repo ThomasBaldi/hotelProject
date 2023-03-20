@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-	const Rate = sequelize.define(
-		'Rate',
+	const Rating = sequelize.define(
+		'Rating',
 		{
 			Value: {
 				type: Sequelize.DataTypes.INTEGER,
@@ -14,5 +14,5 @@ module.exports = (sequelize, Sequelize) => {
 			timestamps: false,
 		}
 	);
-	return Rate;
+	return Rating;
 };
